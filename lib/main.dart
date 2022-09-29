@@ -4,45 +4,40 @@ void main(){
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatefulWidget{
 
-  var stars = Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(Icons.star, color: Colors.green[500]),
-      Icon(Icons.star, color: Colors.green[500]),
-      Icon(Icons.star, color: Colors.green[500]),
-      const Icon(Icons.star, color: Colors.black),
-      const Icon(Icons.star, color: Colors.black),
-    ],
-  );
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
-  var review_text = const Text(
-    '170 Reviews',
-    style: TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w800,
-      fontFamily: 'Roboto',
-      letterSpacing: 0.5,
-      fontSize: 20,
+class _MyAppState extends State<MyApp> {
+  var myAppBar = AppBar(title: Text("Layout 5"),centerTitle: true,leading: Icon(Icons.menu),);
+
+  var circle = Container(
+    height: 30,
+    width: 30,
+    decoration: BoxDecoration(
+      color: Colors.red,
+      borderRadius: BorderRadius.circular(50)
     ),
+    child: Center(child: Text("25",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
+
   );
-  var myAppBar = AppBar(title: Text("Layout 4"),centerTitle: true,leading: Icon(Icons.menu),);
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: myAppBar,
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              stars,
-              review_text,
-            ],
+        body: Center(
+          child: Stack(
+             children: [
+               Image.network('https://cdn0.iconfinder.com/data/icons/apple-apps/100/Apple_Messages-512.png',fit: BoxFit.cover,height: 100,width: 100,),
+               circle
+
+             ],
           ),
-        ) ,
-      ),
-    );
+        )
+        ),
+      );
   }
 }
